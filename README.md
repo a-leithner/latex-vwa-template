@@ -376,7 +376,7 @@ Die Dokumentenklasse `vwa.cls`, die das Herzstück der Vorlage ausmacht, ist
 lizenziert unter der LaTeX Project Public License, Version 1.3. Die entsprechenden
 Regelungen, [hier](https://www.latex-project.org/lppl/) einsehbar, gelten und
 in der Arbeit wird ein entsprechender Hinweis angedruckt, der zwar entfernt
-werden kann, aber im Sinne der Fair-Use-Mentalität nicht entwernt werden sollte.
+werden kann, aber im Sinne der Fair-Use-Mentalität nicht entfernt werden sollte.
 
 Die mitgelieferten Vorlagedateien, `kapitel/_abstract.tex`, `kapitel/_vorwort.tex`,
 `kapitel/1_einleitung.tex`, `vwa.tex` und `vwa.bib` sind von der LPPL ausgenommen
