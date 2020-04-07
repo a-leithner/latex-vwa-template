@@ -1,0 +1,127 @@
+%
+% vwa.tex
+% Beispieldokument/Vorlage für die vwa.cls von Alexander Leithner
+% Dieses Dokument fällt nicht unter die LPPL, unter der die vwa.cls steht!
+%
+
+% Haupteinstellungen für den Textsatz der VWA:
+% a4paper             gibt an, dass die Arbeit auf A4 (Norm EN ISO 216) gesetzt wird
+% 12pt                gibt an, dass die Schriftgröße 12 Punkt betragen soll
+% oneside             gibt an, dass die Arbeit einseitig und nicht im Duplex-Verfahren gesetzt werden soll
+% BCOR=               gibt an, dass die Bindungskorrektur dem Wert hinter "=" entsprechen soll (immer mit Einheit anzugeben)
+% parskip=            gibt den Abstand zwischen zwei Absätzen an (mögl. Werte: off, half, full, never)
+% bibliography=totoc  gibt an, dass das Literaturverzeichnis im Inhaltsverzeichnis aufscheinen soll.
+\documentclass[a4paper,12pt,oneside,BCOR=0mm,bibliography=totoc,parskip=half]{vwa}
+
+% Erzeugt österreichische Anführungszeichen („ und “)
+\usepackage[style=austrian]{csquotes}
+
+% Lädt die Silbentrennungseinstellungen für die neue deutsche Rechtschreibung
+% Um weitere Silbentrennungen zu laden, die Sprachen VOR deutsch eintragen (mit Komma getrennt)
+% Bei anderssprachigen Arbeiten die jeweilige Sprache als letzte eintragen (mit Komma getrennt)
+\usepackage[ngerman]{babel}
+
+% --- FORMELSATZ ----------------------------------------------------------------------
+% Wird der Formelsatz nicht benötigt, kann alles hier bis zu "allgemeine Information"
+% entweder kommentiert (mittels Voranstellen eines % in jeder Zeile) oder gelöscht
+% werden.
+% Lädt zusätzliche Werkzeuge für den Formelsatz.
+\usepackage{mathtools}
+
+% Lädt die American Mathematical Society-Erweiterungen bzgl. Formelsatz:
+% amsmath   sind generelle LaTeX-Erweiterungen für den fortgeschrittenen Formelsatz.
+% amsfonts  sind moderne Schriften für Formeln incl. skalierbaren Zeichen.
+% amssymb   sind erweiterte Zeichensätze für den fortgeschrittenen Formelsatz.
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% --- ALLGEMEINE INFORMATION ----------------------------------------------------------
+%  Titel, Untertitel und VerfasserIn:
+%% Ist kein Untertitel vorhanden, sind die geschwungenen Klammern für diesen Befehl
+%% unbedingt leer zu lassen und nicht zu löschen!
+\title{}
+\subtitle{}
+\author{}
+\klasse{}
+%  BetreuerIn und Schule:
+%% Das Schullogo ist auf jeden Fall mit Dateiendung (am besten ".png") anzugeben!
+%% Der Befehl "\schule" akzeptiert folgende Eingaben: [logo]{name}{adresse}
+\betreuerLabel{Betreuer}
+\betreuer{}
+\schule[]{}{}
+%  Ort der Schule, Abgabedatum:
+%% Lt. Ministerium hat das Abgabedatum folgendes Format zu haben: "Monat Jahr"
+%% Der Ort der Schule sollte mit der Postleitzahlangabe in der Adresse übereinstimmen.
+\ort{}
+\date{}
+
+% --- BESONDERE TYPOGRAPHISCHE EINSTELLUNGEN ------------------------------------------
+%  Zeilenabstand:
+%% Der Zeilenabstand muss als dekadische Zahl angegeben werden, bspw. 1.5 für eineinhalb-
+%% zeiligen Zeilenabstand.
+\zeilenabstand{1.5}
+%  Kopf- und Fußzeilen:
+%% Folgende Kommandos können durch Entfernen des Prozentzeichens gültig gemacht werden
+%% und haben so folgende Auswirkungen:
+%%   \keinTitelImKopf   entfernt den Titel der Arbeit aus der Kopfzeile
+%%   \titelImFuss       setzt Autor und Titel in die Fußzeile
+%%   \schuleImFuss      setzt Autor und Schule in die Fußzeile
+%%   \titelImKopfKlein  verkleinert den Titel der Arbeit in der Kopfzeile auf kleinst-
+%%                      mögliche, noch lesbare Schriftgröße
+%% Beachten Sie, dass \schuleImFuss nur funktioniert, wenn \titelImFuss nicht aufgerufen
+%% wird, und dass \titelImKopfKlein nicht funktioniert, wenn \keinTitelImKopf gesetzt
+%% wurde. Untenstehend können die einzelnen Kommandos auskommentiert werden:
+% \keinTitelImKopf
+% \titelImKopfKlein
+% \titelImFuss
+% \schuleImFuss
+
+% --- BIBLIOGRAPHIE-DATENBANKEN -------------------------------------------------------
+% Bibliographie-Datenbanken (.bib Dateien) können hier dem Dokument angefügt werden. Es
+% empfiehlt sich, eine generelle Datei für die gesamte Arbeit anzulegen, oder jede aus
+% den diversen Bibliothekssystemen (bspw. Nationalbibliothek, Universitätsbibliothek Wien)
+% mittels der Funktion "BibTeX exportieren" heruntergeladene Dateien hier anzufügen.
+\addbibresource{vwa.bib}
+
+% --- DOKUMENT ------------------------------------------------------------------------
+% Hier beginnt das tatsächliche Dokument. Hier sollte kein Inhalt eingefügt werden,
+% sondern die einzelnen Kapitel stattdessen mittels "\input" eingebunden werden, wie
+% mit dem Abstract und dem Vorwort gezeigt.
+\begin{document}
+\maketitle
+
+\frontmatter
+\chapter*{Abstract}\label{chapter:Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+\input{kapitel/_abstract.tex}
+
+\chapter*{Vorwort}\label{chapter:Vorwort}
+\addcontentsline{toc}{chapter}{Vorwort}
+\input{kapitel/_vorwort.tex}
+
+% Inhaltsverzeichnis an dieser Stelle erzeugen
+\tableofcontents
+
+% Hauptinhalt des Dokuments deklarieren
+\mainmatter
+% Kapitel hier einbinden, bspw:
+% \input{kapitel/1_einleitung.tex}
+% (Prozentzeichen entfernen, um Befehl gültig zu machen)
+
+% Anhang des Dokuments deklarieren
+\appendix
+% Anhang-Trennseite hier erzeugen:
+\addpart*{Anhang}
+
+% Literaturverzeichnis hier erzeugen:
+\printbibliography
+
+% Abbildungsverzeichnis hier erzeugen:
+\listoffigures
+
+% Selbstständigkeitserklärung hier erzeugen:
+\selbststaendigkeitserklaerung
+
+% Dokumentenende markieren, es darf kein Inhalt folgen!
+\end{document}
