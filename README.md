@@ -92,7 +92,7 @@ das Deckblatt der Arbeit kommen, als auch für die PDF-Datei von Bedeutung sind:
   - **BetreuerIn und Schule** werden darunter festgelegt: `\betreuer` ist für
     den Namen der *betreuenden Lehrkraft* vorgesehen, mittels `\betreuerLabel`
     kann ein eigenes "Label", also eine eigene Beschriftung, für den Namen der
-    Lehrkraft auf dem Deckblatt festgelegt werden. Es empfehlen sich "Betreuer"
+    Lehrkraft auf dem Deckblatt festgelegt werden. Es empfehlen sich "Betreuerin"
     und "Betreuer" für deutschsprachige VWAs. Die *Schule* ist etwas komplexer
     festzulegen, da die Dokumentenklasse ein Schullogo (so wie von den meisten
     AHS vorgeschrieben) erwartet. Der Dateiname (relativ zur `vwa.tex`) kommt
