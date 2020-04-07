@@ -187,12 +187,12 @@ In der Bibliographiedatenbank `vwa.bib` können Einträge für das Literaturverz
 angelegt werden. Dabei wird jeder Eintrag mit einem eigenen Kürzel versehen,
 wie in der Datei gezeigt. Konkret sieht ein Eintrag bspw. so aus:
 
-```
+```tex
 @book{id,                               % Eintrag vom Typ "Buch" mit Identifikation "id"
-	author = {Max Mustermann},          % Autor ist Max Mustermann
-	title = {Die Mutter aller Bücher},  % Titel
-	year = {2000},                      % erschienen im Jahr 2000
-	publisher = {Dudenverlag}           % verlegt vom Dudenverlag
+    author = {Max Mustermann},          % Autor ist Max Mustermann
+    title = {Die Mutter aller Bücher},  % Titel
+    year = {2000},                      % erschienen im Jahr 2000
+    publisher = {Dudenverlag}           % verlegt vom Dudenverlag
 }
 ```
 
@@ -201,7 +201,7 @@ Klammer steht, in der Bibliographiedatenbank einmalig ist und vor allem leicht
 merkbar ist. Denn Einträge aus der Bibliographiedatenbank werden mittels dieses
 Kürzels zitiert:
 
-```
+```tex
 \zit{id}
 ```
 
@@ -212,21 +212,21 @@ wird.
 Will man der Fußnote etwas, bspw. Seitenzahlen, hintanstellen, so setzt man das
 in eckige Klammern vor die geschwungenen:
 
-```
+```tex
 \zit[S. 45]{id}   % Erzeugt "Mustermann, 2000, S. 45" als Fußnote
 ```
 
 Möchte man der Fußnote etwas voranstellen, so setzt man das in eckige Klammern
 vor die eckige Klammer der Schlussnotiz:
 
-```
+```tex
 \zit[vgl.][S. 45]{id}   % Erzeugt "vgl. Mustermann, 2000, S.45" als Fußnote
 ```
 
 Möchte man der Fußnote allerdings nur etwas voranstellen, so lässt man die
 zweiten eckigen Klammern, die für die Schlussnotiz gedacht waren, leer:
 
-```
+```tex
 \zit[vgl.][]{id}   % Erzeugt "vgl. Mustermann, 2000" als Fußnote
 ```
 
@@ -249,7 +249,7 @@ Angenommen, ich möchte die Datei "funktion1.png" als Abbildung mit der
 Unterschrift "Lineare Funktion ersten Grades" in meine Arbeit übernehmen, so
 schreibe ich:
 
-```
+```tex
 \begin{figure}[h]
 \centering
 \includegraphics{funktion1.png}
@@ -276,13 +276,13 @@ der kann folgende Methoden verwenden:
   - entweder zwei Beistriche als öffnende und zwei Backticks (links neben der
     "Löschen"-Taste auf den meisten Tastaturen) als schließende
     Anführungszeichen:
-    ~~~
+    ```tex
     unter ,,Anführungszeichen``
-    ~~~
+    ```
   - oder das Kommando `\enquote`, wie folgt:
-    ~~~
+    ```tex
     unter \enquote{Anführungszeichen}
-    ~~~
+    ```
     Dies Kommando kommt aus dem Paket `csquotes`, das für das Literaturverzeichnis
     schon auf österreichische Anführungszeichen konfiguriert ist.
     
