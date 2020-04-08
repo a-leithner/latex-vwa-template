@@ -38,7 +38,7 @@ aktuellsten Einträge enthält, etwas, das bspw. bei Textverarbeitungsprogrammen
 wie MS Word, OpenOffice, LibreOffice, etc. nach jeder Kapiteländerung manuell
 vorgenommen werden muss.
 
-LaTeX kümmert sich selbst darum, den eingepflegten Inhalt, möglichst leserlich
+LaTeX kümmert sich selbst darum, den eingepflegten Inhalt möglichst leserlich
 zu setzen (im Blocksatz werden bspw. keine großen Abstände eingefügt, wie Word
 das sehr gerne macht) und versucht, nicht schlauer als der Verfasser des 
 Dokuments zu sein (es verliert bspw. keine Stilvorlagen, sondern erzeugt immer
@@ -68,7 +68,7 @@ macOS oder `tlshell` unter Windows, mit Hilfe der Paketnamen installiert werden.
 
 Hat man sich vergewissert, dass alles auf LaTeX-Seite so weit funktioniert,
 muss noch diese Vorlage heruntergeladen werden. Dazu gibt es hier auf GitHub
-die Möglichkeit, das Repository [als ZIP-Archiv herunterzuladen](https://github.com/a-leithner/latex).
+die Möglichkeit, das Repository [als ZIP-Archiv herunterzuladen](https://github.com/a-leithner/latex-vwa-template/archive/master.zip).
 Ist dieses Archiv dann entpackt, kann losgelegt werden:
 
 ### Die Hauptdatei `vwa.tex`
