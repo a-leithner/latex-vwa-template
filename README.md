@@ -187,7 +187,7 @@ In der Bibliographiedatenbank `vwa.bib` können Einträge für das Literaturverz
 angelegt werden. Dabei wird jeder Eintrag mit einem eigenen Kürzel versehen,
 wie in der Datei gezeigt. Konkret sieht ein Eintrag bspw. so aus:
 
-```tex
+```bibtex
 @book{id,                               % Eintrag vom Typ "Buch" mit Identifikation "id"
     author = {Max Mustermann},          % Autor ist Max Mustermann
     title = {Die Mutter aller Bücher},  % Titel
