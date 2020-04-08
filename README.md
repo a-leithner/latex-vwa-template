@@ -231,7 +231,7 @@ zweiten eckigen Klammern, die für die Schlussnotiz gedacht waren, leer:
 ```
 
 Das Kommando `\zit` ist ein von der Dokumentenklasse erzeugter Shortcut für
-das BibLaTeX-Kommando `\autocite`, dass freilich auch verwendet werden kann.
+das BibLaTeX-Kommando `\autocite`, das freilich auch verwendet werden kann.
 
 **Hinweis zu den oben genannten Bibliothekssystemen:** Die Software des österr.
 Bibliothekenverbandes erzeugt manchmal "komische" BibTeX-Einträge, bspw. für
@@ -327,8 +327,8 @@ erst **nach** Einstellen der Bindungskorrektur getroffen werden!
 
 ### Schriftgröße
 
-Eine Schriftgröße von 12 Punkt ist typographischer Standard. Sofern möglich,
-sollte keine Schriftgröße unter 10 Punkt, und keine Schriftgröße über 12 Punkt
+Eine Schriftgröße von 12 Punkt ist typographischer Standard. Sofern möglich
+sollte keine Schriftgröße unter 10 Punkt und keine Schriftgröße über 12 Punkt
 gewählt werden. Sollte man sich mit 12 Punkt allerdings nicht anfreunden können,
 so kann man in Zeile 14 den Ausdruck `12pt` durch die gewünschte Größe ersetzen.
 
@@ -365,7 +365,7 @@ Die hier angebotene Dokumentenklasse basiert auf der Dokumentenklasse `scrbook`
 aus dem wunderbaren [KOMA-Script](https://www.komascript.de)-Projekt, dem ich
 an dieser Stelle danken möchte.
 
-Weiters existiert von Karl Voit von der TU Graz, ebenfalls [hier auf GitHub](https://github.com/novoid/LaTeX-KOMA-VWA)
+Weiters existiert von Karl Voit von der TU Graz, ebenfalls [hier auf GitHub](https://github.com/novoid/LaTeX-KOMA-VWA),
 eine ähnliche Vorlage, die mich erst auf die Idee brachte, diese Dokumentenklasse
 anzufertigen. Da sie allerdings deutlich umfangreicher ist, habe ich mich
 lediglich an ihr orientiert und keinen Code übernommen.
@@ -383,4 +383,4 @@ Die mitgelieferten Vorlagedateien, `kapitel/_abstract.tex`, `kapitel/_vorwort.te
 und müssen daher in der Arbeit nicht erwähnt werden.
 
 Dieses gesamte Repository unterliegt allerdings folgendem Copyright:  
-Copyright &copy; 2020 Alexander Leithner
+Copyright &copy; 2020 Alexander Leithner.
