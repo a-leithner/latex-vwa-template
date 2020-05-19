@@ -83,7 +83,7 @@ nur eine Empfehlung, aber die Arbeit an der Arbeit kann dadurch deutlich
 Doch zunächst gilt es, die Metadaten auszufüllen; eigentlich ist in der Datei
 bereits alles erklärt, der Vollständigkeit halber aber auch noch hier:
 
-In den Zeilen 43 - 57 sind allgemeine Informationen auszufüllen, die sowohl auf
+In den Zeilen 46 - 60 sind allgemeine Informationen auszufüllen, die sowohl auf
 das Deckblatt der Arbeit kommen, als auch für die PDF-Datei von Bedeutung sind:
 
   - **Titel, Untertitel und Autor** werden mit den Befehlen `\title`,
@@ -120,14 +120,14 @@ das Deckblatt der Arbeit kommen, als auch für die PDF-Datei von Bedeutung sind:
 
 Auf den folgenden Zeilen finden sich typographische Einstellungen, von denen
 der Zeilenabstand nicht ohne Absprache mit dem Betreuer/der Betreuerin geändert
-werden sollte: Der Befehl `\zeilenabstand{1.5}` (Z. 63) gibt an, dass die VWA, wie vom
+werden sollte: Der Befehl `\zeilenabstand{1.5}` (Z. 66) gibt an, dass die VWA, wie vom
 Bildungsministerium vorgeschrieben, eineinhalbzeilig gesetzt werden soll. Das
 ist sehr geschmacksabhängig, vielen Arbeiten tut solch großer Zeilenabstand
 nicht gut, er kann daher bspw. mittels `\zeilenabstand{1}` auf einzeilig
 reduziert werden.
 
 Wer möchte, kann sich seine Kopf- und Fußzeilen nach Maßgabe der Dokumentenklasse
-selbst auswählen, auf den Zeilen 75 - 78 finden sich Befehle, die diese Einträge
+selbst auswählen, auf den Zeilen 78 - 81 finden sich Befehle, die diese Einträge
 steuern, es darf dabei manchmal aber nur einer ausgewählt werden:
 
   - `\keinTitelImKopf` entfernt den Titel aus den Kopfzeilen, wo er standardmäßig
@@ -147,7 +147,7 @@ Wer nichts außer den LaTeX-Standards aktuelles Kapitel und Seitenzahl in den
 Kopf- und Fußzeilen stehen haben möchte, der aktiviert einfach `\keinTitelImKopf`,
 die Fußzeile ist standardmäßig leer.
 
-Auf Zeile 85 wird die erste Bibliographiedatenbank eingebunden, die auch mit
+Auf Zeile 88 wird die erste Bibliographiedatenbank eingebunden, die auch mit
 dieser Vorlage mitgeliefert wird, nämlich "vwa.bib". Es kann sinnvoll sein,
 wenn man sich mittels der Funktion "BibTeX exportieren" Bibliographiecode aus
 den Bibliothekssystemen des österreichischen Bibliothekenverbandes (also fast
@@ -155,21 +155,21 @@ alles Universitätsbibliotheken) herunterlädt, diese als eigenständige Dateien
 neben dem Hauptdokument zu speichern und wie gezeigt, einzubinden. `biber` wird
 sich dann um das Verarbeiten aller Dateien kümmern.
 
-Auf Zeile 91 beginnt das eigentliche Dokument, von Zeile 95 - 101 befinden sich
+Auf Zeile 91 beginnt das eigentliche Dokument, von Zeile 98 - 104 befinden sich
 vorgefertigte Anweisungen für ein Abstract und ein Vorwort, letzteres ist lt.
-Ministerium optional, die Zeilen 99 - 101 können also im Ernstfall gelöscht
+Ministerium optional, die Zeilen 102 - 104 können also im Ernstfall gelöscht
 werden. Wie gezeigt befinden sich die Inhalte für das Abstract und das Vorwort
 in den Dateien `kapitel/_abstract.tex` und `kapitel/_vorwort.tex`, wo sie
 geändert werden können. Eigene Kapiteldateien, wie bspw. die Beispieldatei
-`kapitel/1_einleitung.tex` sollten erst nach Zeile 107, wie in Zeile 109 gezeigt,
-aber jedenfalls vor Zeile 113, eingebunden werden.
+`kapitel/1_einleitung.tex` sollten erst nach Zeile 110, wie in Zeile 112 gezeigt,
+aber jedenfalls vor Zeile 116, eingebunden werden.
 
 Hat man in seiner ganzen VWA keine Abbildungen und Tabellen, so sollte die Zeile
-121 entweder durch Voranstellen eines Prozentzeichens kommentiert oder gelöscht
+124 entweder durch Voranstellen eines Prozentzeichens kommentiert oder gelöscht
 werden.
 
 Den neuesten Handreichungen des Ministeriums ist zu entnehmen, dass eine wie
-hier auf Zeile 124 erzeugte Selbstständigkeitserklärung optional ist, was
+hier auf Zeile 127 erzeugte Selbstständigkeitserklärung optional ist, was
 bedeutet, dass diese Zeile nach Absprache mit Direktion und Lehrkraft gelöscht
 werden kann.
 
@@ -285,6 +285,23 @@ der kann folgende Methoden verwenden:
     ```
     Dies Kommando kommt aus dem Paket `csquotes`, das für das Literaturverzeichnis
     schon auf österreichische Anführungszeichen konfiguriert ist.
+  - Wem das aber zu kompliziert ist, der nimmt einfach `"`, also die
+    Gänsefüßchen, die mit Shift + 2 erzeugt werden, vorne und hinten:
+    ```tex
+    unter "Anführungszeichen"
+    ```
+    Einfache Anführungszeichen müssen allerdings so oder so wie unten beschrieben
+    gesetzt werden:
+
+Natürlich ist es mit den doppelten Anführungszeichen allerdings nicht getan.
+Wer in Zitaten Zitate hat, wird um einfache Anführungszeichen nicht herumkommen.
+Das geht wie folgt:
+
+```tex
+unter ,einfachen` Anführungszeichen
+```
+
+Hierbei ist das erste Anführungszeichen ein ganz normaler Beistrich.
     
 
 ### PDF erzeugen
