@@ -114,7 +114,7 @@ das Deckblatt der Arbeit kommen, als auch für die PDF-Datei von Bedeutung sind:
     sich also
     ```tex
     \ort{Wien}
-    \datum{Februar 2040}
+    \date{Februar 2040}
     ```
     (Gesetzt den Fall, der Kandidat/die Kandidatin maturiert im Jahre 2040...)
 
@@ -367,6 +367,44 @@ europäischen wissenschaftlichen Arbeiten üblich) im Inhaltsverzeichnis angegeb
 werden muss. Will man das unter gar keinen Umständen, kann man den Eintrag
 `bibliography=totoc` in Zeile 14 entfernen, oder, falls man ihn irrtümlich
 entfernt hat, wieder anfügen (mit Komma getrennt!).
+
+### Anderssprachige Arbeiten
+
+Bei vielen anderen Sprachen, man muss nur auf Englisch schauen, gelten freilich
+andere Textsatzregeln, v.a. hinsichtlich Anführungszeichen und
+selbstverständlich Silbentrennung. Wer seine Arbeit daher in einer anderen
+Sprache als Deutsch verfasst, muss einige Anpassungen vornehmen:
+
+  - *Silbentrennung:* In Z. 19 muss die entsprechende Sprache **als letzte** in
+    der Liste in den eckigen Klammern angeführt werden, um sie als
+    Standardsprache festzulegen. Wer nur, bspw., das Abstract, auf Englisch o.a.
+    verfasst, muss diese Sprache **vor** `naustrian` eingeben. Für eine
+    englischsprachige Arbeit sähe die Zeile 19 also wie folgt aus:
+    ```tex
+    \usepackage[naustrian,english]{babel}
+    ```
+    Bessere (und vor allem ausführlichere) Information, wie man mit
+    mehrsprachigen LaTeX-Dokumenten umgeht, findet sich in der
+    [Dokumentation](https://mirror.easyname.at/ctan/macros/latex/required/babel/base/babel.pdf)
+    des [`babel` Paketes](https://www.ctan.org/pkg/babel).
+  - *Anführungszeichen:* Es empfiehlt sich, statt der „magischen“
+    Anführungszeichen (doppelte Verwendung von `"` erzeugt korrekte österr.
+    Anführungszeichen) die für diejenige Sprache gedachten
+    Mehrzeichen-Anführungszeichen zu verwenden, bspw. für englischsprachige
+    Arbeiten:
+    ```tex
+    unter ``Anführungszeichen''
+    ```
+    Um die magischen Anführungszeichen abzuschalten, muss die Zeile 24 entw.
+    gelöscht oder auskommentiert werden.  
+    Die konkreten Einstellungen für das `csquotes` Paket (sofern man überhaupt
+    `\enquote` verwendet oder die Arbeit gänzlich anderssprachig ist) verschiedene
+    Sprachen finden sich in dessen [Dokumentation](https://mirror.easyname.at/ctan/macros/latex/contrib/csquotes/csquotes.pdf)
+    auf Seite 17. Der enstpr. `style` Eintrag muss dann in Z. 23 gesetzt werden.
+  - *Deckblatt:* Sofern das verlangt wird, und die Arbeit gänzlich in einer
+    anderen Sprache als Deutsch verfasst wird, muss auch das Deckblatt geändert
+    werden. Hierzu müssen in der Datei `vwa.cls` in Zeile 160 der Textbaustein
+    abgeändert werden.
 
 ## Fehler, Fragen
 
