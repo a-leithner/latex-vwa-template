@@ -22,12 +22,12 @@
 %
 % This work consists of the file vwa.cls and is based on KOMA-Script
 
-\def\fileversion{0.3}
-\def\filedate{07.IV.2020}
+\def\fileversion{0.4}
+\def\filedate{19.V.2020}
 
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesClass{vwa}[2020/04/07 v.\fileversion\space by Alexander Leithner]
+\ProvidesClass{vwa}[2020/05/19 v.\fileversion\space by Alexander Leithner]
 
 \DeclareOption*{%
 	\PassOptionsToClass{\CurrentOption}{scrbook}%
@@ -213,6 +213,26 @@
 
 % Shortcut command for the linespread
 \newcommand{\zeilenabstand}[1]{\linespread{#1}}
+
+% Shortcut command for figures
+\newcommand{\abbildung}[2]{%
+	\begin{figure}[h]%
+		\centering%
+		\includegraphics{#2}%
+		\caption{#1}%
+		\label{abb:#2}%
+	\end{figure}%
+}
+
+% Shortcut command for figures with custom LOF caption and label
+\newcommand{\abbildung*}[4]{%
+	\begin{figure}[h]%
+		\centering%
+		\includegraphics{#4}%
+		\caption[#1]{#2}%
+		\label{#3}%
+	\end{figure}%
+}
 
 % General typographic design decisions overriding KOMA-Script defaults
 \KOMAoptions{toc=chapterentrydotfill}
