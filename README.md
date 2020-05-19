@@ -53,7 +53,7 @@ erleichtern, viele davon kommen bereits mit neuesten LaTeX-Installationen mit.
 Voraussetzung, um dieses Vorlagenprojekt und die mitgelieferte Dokumentenklasse
 zu verwenden, ist eine funktionierende LaTeX-Installation, ich empfehle bspw.
 [TeX Live](https://www.tug.org/texlive) in dem vorgegebenen Installationsumfang
-von "Medium".
+von „Medium“.
 
 Jedenfalls ist zu kontrollieren, ob die Pakete `biblatex` und `biber` verfügbar
 sind, denn diese kümmern sich um die Bibliographie. Bei TeX Live können beide
@@ -91,9 +91,9 @@ das Deckblatt der Arbeit kommen, als auch für die PDF-Datei von Bedeutung sind:
     bei LaTeX üblich, in die geschwungenen Klammern zu schreiben.
   - **BetreuerIn und Schule** werden darunter festgelegt: `\betreuer` ist für
     den Namen der *betreuenden Lehrkraft* vorgesehen, mittels `\betreuerLabel`
-    kann ein eigenes "Label", also eine eigene Beschriftung, für den Namen der
-    Lehrkraft auf dem Deckblatt festgelegt werden. Es empfehlen sich "Betreuerin"
-    und "Betreuer" für deutschsprachige VWAs. Die *Schule* ist etwas komplexer
+    kann ein eigenes „Label“, also eine eigene Beschriftung, für den Namen der
+    Lehrkraft auf dem Deckblatt festgelegt werden. Es empfehlen sich „Betreuerin“
+    und „Betreuer“ für deutschsprachige VWAs. Die *Schule* ist etwas komplexer
     festzulegen, da die Dokumentenklasse ein Schullogo (so wie von den meisten
     AHS vorgeschrieben) erwartet. Der Dateiname (relativ zur `vwa.tex`) kommt
     in die eckigen Klammern, in die ersten geschwungenen der Name der Schule und
@@ -102,7 +102,7 @@ das Deckblatt der Arbeit kommen, als auch für die PDF-Datei von Bedeutung sind:
     ```tex
     \schule[figuren/bg25.png]{Bundesgymnasium Wien XXV}{Hans-Meyer-Platz 90 \\ 1250 Wien}
     ```
-    Das bedeutet, dass das Schullogo im Ordner "figuren" unter dem Namen "bg25.png"
+    Das bedeutet, dass das Schullogo im Ordner „figuren“ unter dem Namen „bg25.png“
     abgelegt ist (Achtung: auch unter Windows ist der Pfad-Trenner ein Schrägstrich!),
     die Schule das Bundesgymnasium Wien XXV ist und am Hans-Meyer-Platz 90 im 25.
     Bezirk steht. Optimalerweise hat das Logo eine Höhe von 30pt (also 30 Pixel),
@@ -136,7 +136,7 @@ steuern, es darf dabei manchmal aber nur einer ausgewählt werden:
     auf die kleinste, gerade noch lesbare. Diese Einstellung ist nicht zu
     empfehlen, lange Titel sollten eher in die Fußzeile. Dieser Befehl funktioniert
     *nicht*, wenn `\keinTitelImKopf` angegeben wurde.
-  - `\titelImFuss` platziert den Titel im Format "Autor, Titel" im linken
+  - `\titelImFuss` platziert den Titel im Format „Autor, Titel“ im linken
     Bereich der Fußzeile. Das ist besonders bei langen Titeln praktisch.
   - `\schuleImFuss` platziert den Namen des Autors/der Autorin im linken Bereich
 	der Fußzeile und den Namen der Schule in den mittleren. Typographisch nur
@@ -148,8 +148,8 @@ Kopf- und Fußzeilen stehen haben möchte, der aktiviert einfach `\keinTitelImKo
 die Fußzeile ist standardmäßig leer.
 
 Auf Zeile 88 wird die erste Bibliographiedatenbank eingebunden, die auch mit
-dieser Vorlage mitgeliefert wird, nämlich "vwa.bib". Es kann sinnvoll sein,
-wenn man sich mittels der Funktion "BibTeX exportieren" Bibliographiecode aus
+dieser Vorlage mitgeliefert wird, nämlich „vwa.bib“. Es kann sinnvoll sein,
+wenn man sich mittels der Funktion „BibTeX exportieren“ Bibliographiecode aus
 den Bibliothekssystemen des österreichischen Bibliothekenverbandes (also fast
 alles Universitätsbibliotheken) herunterlädt, diese als eigenständige Dateien
 neben dem Hauptdokument zu speichern und wie gezeigt, einzubinden. `biber` wird
@@ -234,19 +234,19 @@ Das Kommando `\zit` ist ein von der Dokumentenklasse erzeugter Shortcut für
 das BibLaTeX-Kommando `\autocite`, das freilich auch verwendet werden kann.
 
 **Hinweis zu den oben genannten Bibliothekssystemen:** Die Software des österr.
-Bibliothekenverbandes erzeugt manchmal "komische" BibTeX-Einträge, bspw. für
-die Sprache (hier wird manchmal "ger" angefügt, was im Literaturverzeichnis
+Bibliothekenverbandes erzeugt manchmal „komische“ BibTeX-Einträge, bspw. für
+die Sprache (hier wird manchmal „ger“ angefügt, was im Literaturverzeichnis
 nicht schön aussieht). Alle zu übernehmenden Einträge müssen deshalb geprüft
 werden, außerdem ist gerade bei Einträgen vom Typ `@thesis` und `@phdthesis`
 ein eigenes Feld, `type = {Masterarbeit}` bzw. `type = {Doktorarbeit}` anzuraten,
 da BibLaTeX standardmäßig seltsame Label vergibt, so steht bspw. bei
-`@phdthesis`-Einträgen lediglich "Diss." im Literaturverzeichnis.
+`@phdthesis`-Einträgen lediglich „Diss.“ im Literaturverzeichnis.
 
 ### Abbildungen
 
 Abbildungen sind ein wenig kniffliger anzulegen, aber auch nicht schwierig.
-Angenommen, ich möchte die Datei "funktion1.png" als Abbildung mit der
-Unterschrift "Lineare Funktion ersten Grades" in meine Arbeit übernehmen, so
+Angenommen, ich möchte die Datei „funktion1.png“ als Abbildung mit der
+Unterschrift „Lineare Funktion ersten Grades“ in meine Arbeit übernehmen, so
 schreibe ich:
 
 ```tex
@@ -259,8 +259,8 @@ schreibe ich:
 ```
 
 Das erzeugt eine zentrierte Abbildung aus der Datei `funktion1.png` mit der
-Unterschrift "Lineare Funktion ersten Grades (Abb.: Verf.)", sodass auch die
-Quelle angegeben ist, und einem LaTeX-internen "Label" mit der Bezeichnung
+Unterschrift „Lineare Funktion ersten Grades (Abb.: Verf.)“, sodass auch die
+Quelle angegeben ist, und einem LaTeX-internen „Label“ mit der Bezeichnung
 `fig:funktion1`. Mittels `\ref{fig:funktion1}` kann dann später im Dokument
 auf diese Abbildung verwiesen werden, sodass auch die richtige Abbildungszahl
 automatisch übernommen wird.
@@ -268,13 +268,42 @@ automatisch übernommen wird.
 *Anmerkung:* Zur Übersichtlichkeit empfiehlt es sich, auch die Abbildungen in
 einem eigenen Ordner aufzubewahren.
 
+**Neue, einfache Möglichkeit:** Weiters ist es möglich, über zwei von der
+Dokumentenklasse zur Verfügung gestellte Kommandos die oben gezeigte Struktur
+für Abbildungen ganz einfach mit einem Aufruf zu erzeugen.
+
+Wer einfach ein Bild einbinden möchte, der verwendet, um dieselbe Datei wie
+im obigen Beispiel in das Dokument zu übernehmen:
+```tex
+\abbildung{Lineare Funktion ersten Grades (Abb.: Verf.)}{funktion1.png}
+```
+
+Standardmäßig ist damit auf die Abbildung mithilfe von `\ref{abb:funktion1.png}`
+zu verweisen, es wird im Label also immer der Dateiname mit vorangestelltem 
+Präfix `abb:` verwendet.
+
+Wem das aber nicht flexibel genug ist und stattdessen selbst auch noch die
+Beschriftung im Abbildungsverzeichnis und das Label, mit dem man auf die Figur
+verweisen kann, anpassen möchte, der verwendet folgendes Kommando:
+
+```tex
+\abbildung*{Lineare Funktion ersten Grades (Abb.: Verf., erstellt mittels GeoGebra)}{Lineare Funktion ersten Grades (Abb.: Verf.)}{abb:funktionLinearErsterGrad}{funktion1.png}
+```
+
+Somit wird im Abbildungsverzeichnis für diese Abbildung der Text „Lineare
+Funktion ersten Grades (Abb.: Verf., erstellt mittels GeoGebra)“ angedruckt und
+auf diese Abbildung lässt sich mit `\ref{abb:funktionLinearErsterGrad}`
+verweisen. Wichtig ist, dass hier, um konsistent zu bleiben der Präfix `abb:`
+mit eingegeben werden muss, sonst würde er schlichtweg fehlen (ist kein Fehler,
+erschwert aber die Handhabung, wenn man beide Varianten mischt).
+
 ### Anführungszeichen
 
 Wer korrekte österreichische Anführungszeichen setzen will (empfiehlt sich),
 der kann folgende Methoden verwenden:
 
   - entweder zwei Beistriche als öffnende und zwei Backticks (links neben der
-    "Löschen"-Taste auf den meisten Tastaturen) als schließende
+    „Löschen“-Taste [Backspace] auf den meisten Tastaturen) als schließende
     Anführungszeichen:
     ```tex
     unter ,,Anführungszeichen``
@@ -308,7 +337,7 @@ Hierbei ist das erste Anführungszeichen ein ganz normaler Beistrich.
 
 Ist die Arbeit fertig abgefasst, oder möchte man sich den Zwischenstand ansehen,
 so kann man eine PDF-Datei erzeugen. Das funktioniert entweder über einen
-gesonderten LaTeX-Editor, wie "TeXWorks", der mit TeX Live mitgeliefert wird,
+gesonderten LaTeX-Editor, wie „TeXWorks“, der mit TeX Live mitgeliefert wird,
 oder über die Kommandozeile durch Ausführen der folgenden Abfolge von Befehlen:
 
 ```shell
@@ -318,7 +347,7 @@ pdflatex vwa.tex
 pdflatex vwa.tex
 ```
 
-Dann sollte man einen Haufen neuer Dateien, incl. einer "vwa.pdf", in seinem
+Dann sollte man einen Haufen neuer Dateien, incl. einer „vwa.pdf“, in seinem
 Ordner liegen haben.
 
 *Anmerkung:* Unter Windows ist freilich an die Programmnamen ein `.exe` anzuhängen!
@@ -338,7 +367,7 @@ Ausdruck `BCOR=0mm` auf den gewünschten Millimeterwert (mittels `BCOR=..mm`).
 
 ***Achtung:*** LaTeX, oder besser KOMA-Script, auf dem die Dokumentenklasse basiert,
 wird dadurch gezwungen, nicht nur den Inhalt nach rechts zu verschieben, sondern
-den gesamten Schriftbereich ("Satzspiegel") neu zu berechnen! Alle layouttechnischen
+den gesamten Schriftbereich („Satzspiegel“) neu zu berechnen! Alle layouttechnischen
 Änderungen, die man zum Abschluss der Arbeit vielleicht vornehmen möchte, sollten
 erst **nach** Einstellen der Bindungskorrektur getroffen werden!
 
@@ -410,7 +439,7 @@ Sprache als Deutsch verfasst, muss einige Anpassungen vornehmen:
 
 Ich hoffe, dass diese Vorlage den an LaTeX interessierten Maturanten und
 Maturantinnen eine Hilfe ist. Sollten bei der Verwendung dieser Vorlage und der
-Dokumentenklasse Fragen oder Probleme auftreten, kann oben über "Issues" eine
+Dokumentenklasse Fragen oder Probleme auftreten, kann oben über „Issues“ eine
 Frage gestellt oder ein Problem gemeldet werden; ich bin sehr daran interessiert,
 beim Einstieg in LaTeX bestmöglich zu helfen.
 
