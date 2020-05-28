@@ -297,6 +297,72 @@ verweisen. Wichtig ist, dass hier, um konsistent zu bleiben der Präfix `abb:`
 mit eingegeben werden muss, sonst würde er schlichtweg fehlen (ist kein Fehler,
 erschwert aber die Handhabung, wenn man beide Varianten mischt).
 
+**Abbildungen im Text platzieren:** Wer Microsoft Word, LibreOffice o.ä.
+gewohnt ist, dem wird es sicherlich spanisch vorkommen, dass LaTeX die
+Abbildungen möglichst am Rande von Text platziert. Mit einiger Trickserei kann
+man LaTeX dazu zwingen, die Abbildung direkt dort, wo sie definiert wurde, so
+in den Text zu platzieren, dass der Text, der an der Stelle steht, die Graphik
+umfließt. Das ist nun auch mit Version 0.5 dieser Vorlage möglich, allerdings
+wird das [Paket `wrapfig`](https://ctan.org/pkg/wrapfig) benötigt.
+
+Wie bereits oben gezeigt, können Abbildungen, die der Text umfließt, so erzeugt
+werden:
+
+```tex
+\umflussabbildung{Lineare Funktion ersten Grades (Abb.: Verf.)}{funktion1.png}
+```
+
+Analog zu den anderen, standardisierten Abbildungskommandos gibt es auch hiervon
+eine Version mit Sternchen, bei der man seine eigenen Beschreibungen für das
+Abbildungsverzeichnis und Label erzeugen kann:
+
+```tex
+\umflussabbildung*{Lineare Funktion ersten Grades (Abb.: Verf., erstellt mittels GeoGebra)}{Lineare Funktion ersten Grades (Abb.: Verf.)}{abb:funktionLinearErsterGrad}{funktion1.png}
+```
+
+*Anmerkung:* Ist das Paket `wrapfig` nicht installiert und werden dennoch
+Umflussabbildungen verwendet, bricht die Vorlage das Zusammenbauen der Arbeit
+nicht ab: Es wird ein Fehler angezeigt und die Graphik stattdessen mit der der
+verwendeten Variante von `\umflussabbildung` oder `\Umflussabbildung`
+äquivalenten Version von `\abbildung` oder `\Abbildung` fortgefahren, Sie können
+also dennoch auf die Abbildung mittels `\ref` verweisen.
+
+**Skalierte Abbildungen:** Manchmal kommt es vor, dass man mit sehr großen
+Abbildungen zu tun und kämpfen hat, weshalb es geschickt erscheint, die Graphiken
+zu skalieren. Selbstverständlich geht das auch mit LaTeX und mit Version 0.5
+dieser Vorlage auch sehr einfach mit den groß geschriebenen Varianten aller oben
+gezeigten Kommandos. Dabei sind die Parameter für die Bildgröße, die an das
+[Paket `graphicx`](https://ctan.org/pk/graphicx) weitergeleitet werden, *immer*
+das letzte Argument:
+
+```tex
+\Abbildung{Lineare Funktion ersten Grades (Abb.: Verf.)}{funktion1.png}{height=2cm}
+\Abbildung*{Lineare Funktion ersten Grades (Abb.: Verf., erstellt mittels GeoGebra)}{Lineare Funktion ersten Grades (Abb.: Verf.)}{abb:funktionLinearErsterGrad}{funktion1.png}{height=2cm}
+```
+
+Bei den Kommandos für Umflussabbildungen muss man allerdings ein bisschen
+aufpassen: Die „normale“ Version definiert die Breite des Abbildungsbereiches
+mit `0.5\textwidth`, also 50 % des Bereiches, der für Fließtext zur Verfügung
+steht, und die Breite der Graphik mit `0.48\textwidth`, sodass links und rechts
+der Graphik je 1 % des Textbereiches Abstand gehalten wird. Die skalierbare
+Version der Umflussabbildungen *behält jedoch die Größe der Abbildung mit 50 %
+bei!* Es ist daher unmöglich, die Graphik größer als 50 % des Textbereiches zu
+skalieren und macht eigentlich wenig sinn, viel kleiner als 40 % zu gehen. Es
+sollten bei skalierten Umflussabbildungen allerdings, sollte man sie tatsächlich
+benötigen oder verwenden, *immer* dynamisch berechnete Größen verwendet werden,
+also quasi `faktor mal \textwidth`, wie in den folgenden Beispielen gezeigt:
+
+```tex
+\Umflussabbildung{Lineare Funktion ersten Grades (Abb.: Verf.)}{funktion1.png}{width=0.3\textwidth}
+\Umflussabbildung*{Lineare Funktion ersten Grades (Abb.: Verf., erstellt mittels GeoGebra)}{Lineare Funktion ersten Grades (Abb.: Verf.)}{abb:funktionLinearErsterGrad}{funktion1.png}{width=0.3\textwidth}
+```
+
+*Weitere Skalierungsmöglichkeiten* über die großgeschriebenen Varianten sind
+alle, die das `graphicx` Paket unterstützt; überdies können auch alle anderen
+optionalen Parameter des Kommandos `\includegraphics`, die in der
+[Dokumentation von `graphicx`](http://mirror.kumi.systems/ctan/macros/latex/required/graphics/grfguide.pdf)
+auf Seite 9 angegeben sind, verwendet werden.
+
 ### Anführungszeichen
 
 Wer korrekte österreichische Anführungszeichen setzen will (empfiehlt sich),
@@ -432,7 +498,7 @@ Sprache als Deutsch verfasst, muss einige Anpassungen vornehmen:
     auf Seite 17. Der enstpr. `style` Eintrag muss dann in Z. 23 gesetzt werden.
   - *Deckblatt:* Sofern das verlangt wird, und die Arbeit gänzlich in einer
     anderen Sprache als Deutsch verfasst wird, muss auch das Deckblatt geändert
-    werden. Hierzu müssen in der Datei `vwa.cls` in Zeile 160 der Textbaustein
+    werden. Hierzu muss in der Datei `vwa.cls` in Zeile 160 der Textbaustein
     abgeändert werden.
 
 ## Fehler, Fragen
