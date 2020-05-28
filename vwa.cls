@@ -22,12 +22,12 @@
 %
 % This work consists of the file vwa.cls and is based on KOMA-Script
 
-\def\fileversion{0.4}
-\def\filedate{19.V.2020}
+\def\fileversion{0.5}
+\def\filedate{28.V.2020}
 
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesClass{vwa}[2020/05/19 v.\fileversion\space by Alexander Leithner]
+\ProvidesClass{vwa}[2020/05/28 v.\fileversion\space by Alexander Leithner]
 
 \DeclareOption*{%
 	\PassOptionsToClass{\CurrentOption}{scrbook}%
@@ -215,7 +215,7 @@
 \newcommand{\zeilenabstand}[1]{\linespread{#1}}
 
 % Shortcut command for figures
-\newcommand{\abbildung}[2]{%
+\newcommand{\@abbildung}[2]{%
 	\begin{figure}[h]%
 		\centering%
 		\includegraphics{#2}%
@@ -225,7 +225,7 @@
 }
 
 % Shortcut command for figures with custom LOF caption and label
-\newcommand{\abbildung*}[4]{%
+\newcommand{\@abbildung@custom}[4]{%
 	\begin{figure}[h]%
 		\centering%
 		\includegraphics{#4}%
@@ -233,6 +233,115 @@
 		\label{#3}%
 	\end{figure}%
 }
+
+% Shortcut command for figures
+\newcommand*{\abbildung}{\@ifstar{\@abbildung@custom}{\@abbildung}}
+
+% Shortcut command for figures with custom graphicx parameters
+\newcommand{\@Abbildung}[3]{%
+	\begin{figure}[h]%
+		\centering%
+		\includegraphics[#3]{#2}%
+		\caption{#1}%
+		\label{abb:#2}%
+	\end{figure}%
+}
+
+% Shortcut command for figures with custom graphicx parameters and LOF caption
+% and label
+\newcommand{\@Abbildung@custom}[5]{%
+	\begin{figure}[h]%
+		\centering%
+		\includegraphics[#5]{#4}%
+		\caption[#1]{#2}%
+		\label{#3}%
+	\end{figure}
+}
+
+% Shortcut command for figures with custom sizes
+\newcommand*{\Abbildung}{\@ifstar{\@Abbildung@custom}{\@Abbildung}}
+
+% Command enabling commands for placing figures so that text wraps around them
+\newcommand{\abbildungenMitUmfluss}{
+	\IfFileExists{wrapfig.sty}{%
+		\RequirePackage{wrapfig}%
+		\newcommand{\umfluss@ok}{}
+	}{%
+		\ClassError{vwa}{wrapfig nicht verfuegbar!}{Um Abbildungen mit Umfluss verwenden zu koennen, installieren Sie bitte das Paket wrapfig!}
+	}
+}
+
+% Command providing simple shortcut for wrapping figures
+\newcommand*{\@umflussabbildung}[2]{%
+	\ifcsname umfluss@ok\endcsname
+	\begin{wrapfigure}{r}{0.5\textwidth}%
+		\begin{center}%
+			\includegraphics[width=0.48\textwidth]{#2}%
+		\end{center}%
+		\caption{#1}%
+		\label{abb:#2}%
+	\end{wrapfigure}%
+	\else%
+		\ClassError{vwa}{Umflussabbildung fehlerhaft, verwende normale Abbildung!}{Um Abbildungen mit Umfluss verwenden zu koennen, installieren Sie bitte das Paket wrapfig!}%
+		\@abbildung{#1}{#2}%
+	\fi%
+}
+
+% Command providing elaborate shortcut for wrapping figures
+\newcommand*{\@umflussabbildung@custom}[4]{%
+	\ifcsname umfluss@ok\endcsname
+	\begin{wrapfigure}{r}{0.5\textwidth}%
+		\begin{center}%
+			\includegraphics[width=0.48\textwidth]{#4}%
+		\end{center}%
+		\caption[#1]{#2}%
+		\label{abb:#3}%
+	\end{wrapfigure}%
+	\else%
+		\ClassError{vwa}{Umflussabbildung fehlerhaft, verwende normale Abbildung!}{Um Abbildungen mit Umfluss verwenden zu koennen, installieren Sie bitte das Paket wrapfig!}%
+		\@abbildung@custom{#1}{#2}{#3}{#4}%
+	\fi%
+}
+
+% Command providing shortcuts for wrapping figures
+\newcommand*{\umflussabbildung}{\@ifstar{\@umflussabbildung@custom}{\@umflussabbildung}}
+
+% Command providing an elaborate shortcut for wrapping figures incl. custom
+% graphicx parameters
+\newcommand{\@Umflussabbildung}[3]{%
+	\ifcsname umfluss@ok\endcsname
+	\begin{wrapfigure}{r}{0.5\textwidth}%
+		\begin{center}%
+			\includegraphics[#3]{#2}%
+		\end{center}%
+		\caption{#1}%
+		\label{abb:#2}%
+	\end{wrapfigure}%
+	\else%
+		\ClassError{vwa}{Umflussabbildung fehlerhaft, verwende normale Abbildung!}{Um Abbildungen mit Umfluss verwenden zu koennen, installieren Sie bitte das Paket wrapfig!}%
+		\@Abbildung{#1}{#2}{#3}%
+	\fi%
+}
+
+% Command providing a more elaborate shortcut for wrapping figures incl. custom
+% graphicx parameters, LOF captions and label parameters
+\newcommand{\@Umflussabbildung@custom}[5]{%
+	\ifcsname umfluss@ok\endcsname
+	\begin{wrapfigure}{r}{0.5\textwidth}%
+		\begin{center}%
+			\includegraphics[#5]{#4}%
+		\end{center}%
+		\caption[#1]{#2}%
+		\label{abb:#3}%
+	\end{wrapfigure}%
+	\else%
+		\ClassError{vwa}{Umflussabbildung fehlerhaft, verwende normale Abbildung!}{Um Abbildungen mit Umfluss verwenden zu koennen, installieren Sie bitte das Paket wrapfig!}%
+		\@Abbildung@custom{#1}{#2}{#3}{#4}{#5}%
+	\fi%
+}
+
+% Command providing elaborate shortcuts for wrapping figures
+\newcommand*{\Umflussabbildung}{\@ifstar{\@Umflussabbildung@custom}{\@Umflussabbildung}}
 
 % General typographic design decisions overriding KOMA-Script defaults
 \KOMAoptions{toc=chapterentrydotfill}
