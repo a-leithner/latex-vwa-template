@@ -22,12 +22,12 @@
 %
 % This work consists of the file vwa.cls and is based on KOMA-Script
 
-\def\fileversion{0.5}
-\def\filedate{28.V.2020}
+\def\fileversion{0.6}
+\def\filedate{07.I.2021}
 
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesClass{vwa}[2020/05/28 v.\fileversion\space by Alexander Leithner]
+\ProvidesClass{vwa}[2021/01/07 v.\fileversion\space by Alexander Leithner]
 
 \DeclareOption*{%
 	\PassOptionsToClass{\CurrentOption}{scrbook}%
@@ -52,28 +52,6 @@
 
 % Create a shortcut so we don't have to type \autocite the whole time
 \let\zit\autocite
-
-% Redefine some of the metadata macros to be able to use them later on
-\let\titleoriginal\title              % Save original title macro
-\renewcommand{\title}[1]{             % Define new title macro.
-    \titleoriginal{#1}%
-    \newcommand{\thetitle}{#1}
-}
-
-\let\subtitleoriginal\subtitle        % Save original subtitle macro
-\renewcommand{\subtitle}[1]{          % Define new subtitle macro.
-    \subtitleoriginal{#1}%
-    \newcommand{\thesubtitle}{#1}
-}
-
-\let\authororiginal\author            % Save original author macro
-\renewcommand{\author}[1]{            % Define new author macro.
-    \authororiginal{#1}%
-    \newcommand{\theauthor}{#1}
-}
-
-\let\dateoriginal\date
-\renewcommand{\date}[1]{\dateoriginal{#1}\newcommand{\thedate}{#1}}
 
 % Provide the school metadata: \schule[logo]{name}{address}
 \newcommand{\schule}[3][schullogo.png]{%
@@ -155,15 +133,15 @@
     \begingroup 
         \begin{center}
         \vspace*{\baselineskip}
-        {\Huge \thetitle}\ifcsname thesubtitle\endcsname%
-        \\[\baselineskip]{\Large \thesubtitle}\fi\\[4\baselineskip]%
-        {\large Vorwissenschaftliche Arbeit verfasst von\\\textbf{\theauthor},\\Klasse \theklasse}
+        {\Huge \@title}%
+        \\[\baselineskip]{\Large \@subtitle}\,\\[4\baselineskip]%
+        {\large Vorwissenschaftliche Arbeit verfasst von\\\textbf{\@author},\\Klasse \theklasse}
         \vfill
         \includegraphics[height=3cm,keepaspectratio]{\theschullogo}\\[\baselineskip]
         {\large \thebetreuerlabel: \thebetreuer}\\[2\baselineskip]
         {\large \theschule}\\
         {\theschuladresse}\\[\baselineskip]
-        {\theort, \thedate}
+        {\theort, \@date}
         \end{center}
     \endgroup
 }
@@ -188,11 +166,11 @@
 % Sets the headers and footers based upon the options given before invocation
 \newcommand{\@definehdrs}{
 	\ifcsname titelAn\endcsname
-		\ifoot[\textsl{\footnotesize\theauthor,\ \thetitle}]{\textsl{\footnotesize\theauthor,\ \thetitle}}
+		\ifoot[\textsl{\footnotesize\@author,\ \@title}]{\textsl{\footnotesize\@author,\ \@title}}
 		\cfoot[]{}
 	\else
 		\ifcsname schuleAn\endcsname
-			\ifoot[\textsl{\footnotesize\theauthor}]{\textsl{\footnotesize\theauthor}}
+			\ifoot[\textsl{\footnotesize\@author}]{\textsl{\footnotesize\@author}}
 			\cfoot[\upshape\footnotesize\theschule]{\upshape\footnotesize\theschule}
 		\else
 			\cfoot[]{}
@@ -202,9 +180,9 @@
 	
 	\ifcsname titelAus\endcsname\else
 		\ifcsname titelAnKlein\endcsname
-			\lohead[]{\scriptsize\thetitle}
+			\lohead[]{\scriptsize\@title}
 		\else%
-			\lohead[]{\footnotesize\thetitle}
+			\lohead[]{\footnotesize\@title}
 		\fi
 	\fi
 	\rohead[]{\slshape\rightmark}
@@ -358,7 +336,7 @@
 	\@ensuretownset
 	\thispagestyle{empty}
 	\chapter*{Selbstständigkeitserklärung}
-	Ich, \theauthor, erkläre hiermit, dass ich diese
+	Ich, \@author, erkläre hiermit, dass ich diese
 	vorwissenschaftliche Arbeit selbstständig und ohne Hilfe Dritter verfasst
 	habe. Insbesondere versichere ich, dass ich alle wörtlichen und sinngemäßen
 	Übernahmen aus anderen Werken als Zitate kenntlich gemacht und alle
