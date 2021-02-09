@@ -124,7 +124,9 @@ werden sollte: Der Befehl `\zeilenabstand{1.5}` (Z. 66) gibt an, dass die VWA, w
 Bildungsministerium vorgeschrieben, eineinhalbzeilig gesetzt werden soll. Das
 ist sehr geschmacksabhängig, vielen Arbeiten tut solch großer Zeilenabstand
 nicht gut, er kann daher bspw. mittels `\zeilenabstand{1}` auf einzeilig
-reduziert werden.
+reduziert werden. Mit Version 0.7 der Vorlage werden Fußnoten nun, egal wie
+groß der Zeilenabstand für die restliche Arbeit auch sein mag, einzeilig gesetzt,
+wie es die formalen Richtlinien des Ministeriums verlangen.
 
 Wer möchte, kann sich seine Kopf- und Fußzeilen nach Maßgabe der Dokumentenklasse
 selbst auswählen, auf den Zeilen 78 - 81 finden sich Befehle, die diese Einträge
@@ -155,23 +157,40 @@ alles Universitätsbibliotheken) herunterlädt, diese als eigenständige Dateien
 neben dem Hauptdokument zu speichern und wie gezeigt, einzubinden. `biber` wird
 sich dann um das Verarbeiten aller Dateien kümmern.
 
-Auf Zeile 91 beginnt das eigentliche Dokument, von Zeile 98 - 104 befinden sich
+Auf Zeile 94 beginnt das eigentliche Dokument, von Zeile 103 - 109 befinden sich
 vorgefertigte Anweisungen für ein Abstract und ein Vorwort, letzteres ist lt.
-Ministerium optional, die Zeilen 102 - 104 können also im Ernstfall gelöscht
+Ministerium optional, die Zeilen 107 - 109 können also im Ernstfall gelöscht
 werden. Wie gezeigt befinden sich die Inhalte für das Abstract und das Vorwort
 in den Dateien `kapitel/_abstract.tex` und `kapitel/_vorwort.tex`, wo sie
 geändert werden können. Eigene Kapiteldateien, wie bspw. die Beispieldatei
-`kapitel/1_einleitung.tex` sollten erst nach Zeile 110, wie in Zeile 112 gezeigt,
-aber jedenfalls vor Zeile 116, eingebunden werden.
+`kapitel/1_einleitung.tex` sollten erst nach Zeile 115, wie in Zeile 117 gezeigt,
+aber jedenfalls vor Zeile 121, eingebunden werden.
 
 Hat man in seiner ganzen VWA keine Abbildungen und Tabellen, so sollte die Zeile
 124 entweder durch Voranstellen eines Prozentzeichens kommentiert oder gelöscht
 werden.
 
 Den neuesten Handreichungen des Ministeriums ist zu entnehmen, dass eine wie
-hier auf Zeile 127 erzeugte Selbstständigkeitserklärung optional ist, was
+hier auf Zeile 129 erzeugte Selbstständigkeitserklärung optional ist, was
 bedeutet, dass diese Zeile nach Absprache mit Direktion und Lehrkraft gelöscht
 werden kann.
+
+Genauso optional aber manchmal notwendig ist eine Gendererklärung, die von der
+Vorlage seit Version 0.7 ebenfalls erzeugt werden kann. Generell ist es Usus,
+eine solche Erklärung der Arbeit voranzustellen, meist noch vor dem Abstract.
+In Zeile 101 ist gezeigt, wie man sie an ebendieser Stelle erzeugen kann.
+*Wichtig* anzumerken ist es, dass eine solche Gendererklärung zwar vom Ministerium
+empfohlen wird, aber ihre Inclusivität durch Verfasser*innen von VWA selbst
+bewertet werden muss. Ich persönlich rate von ihrer Verwendung ab, weil sie die
+Arbeit nicht wirklich inclusiver gestaltet, sondern immer noch einen fahlen
+Beigeschmack hat. Wie gesagt, das ist Geschmackssache und sollte deshalb
+*unbeding* mit der betreuenden Lehrkraft abgesprochen werden.
+
+Der Wortlaut der Gendererklärung wurde aus diversen Diplomarbeiten übernommen;
+er scheint eine Art Konsens der mehr oder weniger wissenschaftlichen Welt zu
+sein - ich selbst bin für die Formulierung nicht verantwortlich und habe sie
+auch nicht ersonnen. Wem eine andere Formulierung besser gefällt, kann sie in
+Zeile 361 - 364 in der `vwa.cls` ändern.
 
 ### Kapiteldateien
 
@@ -241,6 +260,21 @@ werden, außerdem ist gerade bei Einträgen vom Typ `@thesis` und `@phdthesis`
 ein eigenes Feld, `type = {Masterarbeit}` bzw. `type = {Doktorarbeit}` anzuraten,
 da BibLaTeX standardmäßig seltsame Label vergibt, so steht bspw. bei
 `@phdthesis`-Einträgen lediglich „Diss.“ im Literaturverzeichnis.
+
+**Hinweis zu mehreren konsekutiven Fußnoten:** Wer mehrere Fußnoten hintereinander
+hat (was man, von einem typographischen Standpunkt aus gesehen, ohnedies unterlassen
+sollte), kann sie mit einem kleinen Trick direkt von LaTeX mit einem Trennzeichen
+trennen lassen, sodass es nicht aussieht, als hätte man eine einzige Fußnote mit
+sehr großer Nummer. In Zeile 14 kann nach `parskip=half` noch die Option
+`footnotes=multiple` (mit einem Komma getrennt) angehängt werden. Wenn man also
+die Voreinstellungen übernommen hat und nur diese Option angehängt hat, sollte
+die Zeile nun wie folgt aussehen:  
+```tex
+\documentclass[a4paper,12pt,oneside,BCOR=0mm,bibliography=totoc,parskip=half,footnotes=multiple]{vwa}
+```
+Das standardmäßige Trennzeichen ist dabei ein hochgestelltes Komma. In der
+KOMA-Script-Dokumentation, auf S. 94 in der deutschsprachigen Fassung, ist
+nachzulesen, wie man dieses Zeichen austauschen kann.
 
 ### Abbildungen
 
@@ -498,7 +532,7 @@ Sprache als Deutsch verfasst, muss einige Anpassungen vornehmen:
     auf Seite 17. Der enstpr. `style` Eintrag muss dann in Z. 23 gesetzt werden.
   - *Deckblatt:* Sofern das verlangt wird, und die Arbeit gänzlich in einer
     anderen Sprache als Deutsch verfasst wird, muss auch das Deckblatt geändert
-    werden. Hierzu muss in der Datei `vwa.cls` in Zeile 160 der Textbaustein
+    werden. Hierzu muss in der Datei `vwa.cls` in Zeile 144 der Textbaustein
     abgeändert werden.
 
 ## Fehler, Fragen
@@ -533,4 +567,4 @@ Die mitgelieferten Vorlagedateien, `kapitel/_abstract.tex`, `kapitel/_vorwort.te
 und müssen daher in der Arbeit nicht erwähnt werden.
 
 Dieses gesamte Repository unterliegt allerdings folgendem Copyright:  
-Copyright &copy; 2020 Alexander Leithner.
+Copyright &copy; 2020 &mdash; 2021 Alexander Leithner.
