@@ -6,7 +6,7 @@
 %
 
 %% vwa.cls
-%% Copyright 2020 Alexander Leithner
+%% Copyright 2020-2021 Alexander Leithner
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -22,12 +22,12 @@
 %
 % This work consists of the file vwa.cls and is based on KOMA-Script
 
-\def\fileversion{0.6}
-\def\filedate{07.I.2021}
+\def\fileversion{0.7}
+\def\filedate{09.II.2021}
 
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesClass{vwa}[2021/01/07 v.\fileversion\space by Alexander Leithner]
+\ProvidesClass{vwa}[2021/02/09 v.\fileversion\space by Alexander Leithner]
 
 \DeclareOption*{%
 	\PassOptionsToClass{\CurrentOption}{scrbook}%
@@ -117,6 +117,12 @@
 	\fi
 }
 
+% Macro to ensure that we set all footnotes with a linespread of 1 if the
+% document's overall linespread is different than 1
+\newcommand{\@ensuresinglelinespreadinfootnotes}{
+	\addtokomafont{footnote}{\linespread{1}\selectfont}%
+}
+
 % Macro constructing the title page
 \newcommand*{\@thetitle}{
 	\ifcsname theschule\endcsname\else
@@ -189,8 +195,11 @@
 	\chead[]{}
 }
 
-% Shortcut command for the linespread
-\newcommand{\zeilenabstand}[1]{\linespread{#1}}
+% Shortcut command for the linespread which also ensures correct linespread in footnotes
+\newcommand{\zeilenabstand}[1]{%
+	\linespread{#1}%
+	\@ensuresinglelinespreadinfootnotes%
+}
 
 % Shortcut command for figures
 \newcommand{\@abbildung}[2]{%
