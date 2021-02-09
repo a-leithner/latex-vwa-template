@@ -354,6 +354,17 @@
 	\noindent\makebox[5cm]{~}\makebox[3cm][l]{Datum}\hspace{1cm}\makebox[6cm][l]{Unterschrift}
 }
 
+% Command for creating the optional-but-sometimes-required statement of inclusivity
+\newcommand*{\gendererklaerung}{
+	\thispagestyle{empty}
+	\chapter*{Gendererklärung}
+	Aus Gründen der besseren Lesbarkeit wird in dieser vorwissenschaftlichen
+	Arbeit die Sprachform des generischen Maskulinums angewandt. Es wird an
+	dieser Stelle ausdrücklich darauf hingewiesen, dass die ausschließliche
+	Verwendung der männlichen Form geschlechtsunabhängig verstanden werden soll.
+	\newpage
+}
+
 % Patch the list of figures command to actually include page numbers
 \makeatletter
 \renewcommand{\listoffigures}{\newpage\thispagestyle{scrheadings}\chapter*{Abbildungsverzeichnis}\@starttoc{lof}\newpage}
