@@ -4,14 +4,33 @@
 % Dieses Dokument fällt nicht unter die LPPL, unter der die vwa.cls steht!
 %
 
-% Haupteinstellungen für den Textsatz der VWA:
+% Haupteinstellungen für den Textsatz der VWA (Optionen müssen mit , getrennt sein):
 % a4paper             gibt an, dass die Arbeit auf A4 (Norm EN ISO 216) gesetzt wird
 % 12pt                gibt an, dass die Schriftgröße 12 Punkt betragen soll
 % oneside             gibt an, dass die Arbeit einseitig und nicht im Duplex-Verfahren gesetzt werden soll
 % BCOR=               gibt an, dass die Bindungskorrektur dem Wert hinter "=" entsprechen soll (immer mit Einheit anzugeben)
-% parskip=            gibt den Abstand zwischen zwei Absätzen an (mögl. Werte: off, half, full, never)
 % bibliography=totoc  gibt an, dass das Literaturverzeichnis im Inhaltsverzeichnis aufscheinen soll.
-\documentclass[a4paper,12pt,oneside,BCOR=0mm,bibliography=totoc,parskip=half]{vwa}
+% parskip=            gibt den Abstand zwischen zwei Absätzen an (mögl. Werte: off, half, full, never)
+% kopfleer            lässt die Kopfzeile des Dokuments leer (ansonstent steht der Titel darin)
+% fusstitel           lässt den Titel der Arbeit in der Fußzeile statt der Kopfzeile erscheinen
+% fussschule          lässt die Schule statt des Titels in der Fußzeile erscheinen
+% kopftitelklein      stellt eine kleine Schrift für die Kopfzeile, die mit dem Titel befüllt wird, ein
+% gendererklaerung    setzt dem Abstract automatisch eine Gendererklärung voran
+% zahlenmengen        erzeugt Kürzel für die natürlichen, ganzen, komplexen und reellen Zahlen
+%% 
+%% Optionen, die gewünscht werden, einfach an die Liste anhängen. Dabei aufpassen, dass die Optionen
+%% immer mit einem Komma getrennt sind. Die letzte Option darf kein Komma zum Schluss haben!
+%% 
+%% Beachten Sie, dass fussschule nur funktioniert, wenn fusstitel nicht gesetzt
+%% wird, und dass kopftitelklein nicht funktioniert, wenn kopfleer gesetzt wurde.
+\documentclass[
+	a4paper,
+	12pt,
+	oneside,
+	BCOR=0mm,
+	bibliography=totoc,
+	parskip=half
+]{vwa}
 
 % Lädt die Silbentrennungseinstellungen für die neue deutsche Rechtschreibung
 % Um weitere Silbentrennungen zu laden, die Sprachen VOR deutsch eintragen (mit Komma getrennt)
@@ -47,11 +66,13 @@
 \subtitle{}
 \author{}
 \klasse{}
-%  BetreuerIn und Schule:
+%  Betreuer*in und Schule:
 %% Das Schullogo ist auf jeden Fall mit Dateiendung (am besten ".png") anzugeben!
 %% Der Befehl "\schule" akzeptiert folgende Eingaben: [logo]{name}{adresse}
-\betreuerLabel{Betreuer}
-\betreuer{}
+%% Der Befehl "\betreuungsperson" akzeptiert folgende Eingaben: [label]{name}. Das
+%% Label wird auf dem Deckblatt dem Namen vorangestellt und ist standardmäßig
+%% einfach "Betreuer*in".
+\betreuungsperson{}
 \schule[]{}{}
 %  Ort der Schule, Abgabedatum:
 %% Lt. Ministerium hat das Abgabedatum folgendes Format zu haben: "Monat Jahr"
@@ -64,21 +85,6 @@
 %% Der Zeilenabstand muss als dekadische Zahl angegeben werden, bspw. 1.5 für eineinhalb-
 %% zeiligen Zeilenabstand.
 \zeilenabstand{1.5}
-%  Kopf- und Fußzeilen:
-%% Folgende Kommandos können durch Entfernen des Prozentzeichens gültig gemacht werden
-%% und haben so folgende Auswirkungen:
-%%   \keinTitelImKopf   entfernt den Titel der Arbeit aus der Kopfzeile
-%%   \titelImFuss       setzt Autor und Titel in die Fußzeile
-%%   \schuleImFuss      setzt Autor und Schule in die Fußzeile
-%%   \titelImKopfKlein  verkleinert den Titel der Arbeit in der Kopfzeile auf kleinst-
-%%                      mögliche, noch lesbare Schriftgröße
-%% Beachten Sie, dass \schuleImFuss nur funktioniert, wenn \titelImFuss nicht aufgerufen
-%% wird, und dass \titelImKopfKlein nicht funktioniert, wenn \keinTitelImKopf gesetzt
-%% wurde. Untenstehend können die einzelnen Kommandos auskommentiert werden:
-% \keinTitelImKopf
-% \titelImKopfKlein
-% \titelImFuss
-% \schuleImFuss
 
 % --- BIBLIOGRAPHIE-DATENBANKEN -------------------------------------------------------
 % Bibliographie-Datenbanken (.bib Dateien) können hier dem Dokument angefügt werden. Es
@@ -97,7 +103,9 @@
 \frontmatter
 
 % An dieser Stelle kann die Gendererklärung erzeugt werden, sofern sie notwendig
-% sein sollte. Um eine zu erzeugen, einfach das Prozentzeichen entfernen.
+% sein sollte. Um eine zu erzeugen, einfach das Prozentzeichen entfernen oder die
+% Option "gendererklaerung" ganz oben freischalten; die Erklärung wird dann automatisch
+% an dieser Stelle erzeugt.
 % \gendererklaerung
 
 \chapter*{Abstract}\label{chapter:Abstract}

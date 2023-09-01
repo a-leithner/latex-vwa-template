@@ -6,7 +6,7 @@
 %
 
 %% vwa.cls
-%% Copyright 2020-2021 Alexander Leithner
+%% Copyright 2020-2023 Alexander Leithner
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -22,13 +22,56 @@
 %
 % This work consists of the file vwa.cls and is based on KOMA-Script
 
-\def\fileversion{0.7}
-\def\filedate{09.II.2021}
+\def\fileversion{1.0}
+\def\filedate{01.IX.2023}
+\def\fileurl{https://github.com/a-leithner/latex-vwa-template}
 
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesClass{vwa}[2021/02/09 v.\fileversion\space by Alexander Leithner]
+\ProvidesClass{vwa}[2023/09/01 v.\fileversion\space by Alexander Leithner]
 
+\RequirePackage{xspace}
+
+% Provide a sneaky way to disable colophon output (please don't use this!)
+\DeclareOption{keincolophon}{\newcommand{\colophonAus}{}}
+
+% Provide a way to disable title output in the header and enable it in the footer
+%   kopfleer          The header won't contain the title
+%   fusstitel         The footer will contain the author and the title
+%   fussschule        The footer will contain the author and the school
+%   kopftitelklein    The header will scale the title down to \scriptsize
+% Note that the following options exclude each other:
+%   kopftitelklein    will only work if \keinTitelImKopf is unset
+%   fussschule        will only work if \titelImFuss is unset
+\DeclareOption{kopfleer}{\newcommand{\titelAus}{}}
+\DeclareOption{fusstitel}{\newcommand{\titelAn}{}}
+\DeclareOption{fussschule}{\newcommand{\schuleAn}{}}
+\DeclareOption{kopftitelklein}{\newcommand{\titelAnKlein}{}}
+
+% Enable wrapfig for wrap-around figures
+\DeclareOption{umflussabbildungen}{%
+	\IfFileExists{wrapfig.sty}{%
+		\newcommand{\@load@wrapfig}{}%
+		\newcommand{\umfluss@ok}{}
+	}{%
+		\ClassError{vwa}{wrapfig nicht installiert!}{Um Abbildungen mit Umfluss zu setzen, installieren Sie bitte das Paket wrapfig!}%
+	}
+}
+
+% Option to automatically include the inclusivity statement
+\DeclareOption{gendererklaerung}{\newcommand{\@gendererklaerung@auto}{}}
+
+% Option to enable additional math shorthands
+\DeclareOption{zahlenmengen}{
+	\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+	\newcommand{\R}{\ensuremath{\mathbb{R}}\xspace}
+	\newcommand{\C}{\ensuremath{\mathbb{C}}\xspace}
+	\newcommand{\Z}{\ensuremath{\mathbb{Z}}\xspace}
+	\newcommand{\Q}{\ensuremath{\mathbb{Q}}\xspace}
+	\newcommand{\K}{\ensuremath{\mathbb{K}}\xspace}
+}
+
+% Pass all other options to KOMA-Script's scrbook
 \DeclareOption*{%
 	\PassOptionsToClass{\CurrentOption}{scrbook}%
 }
@@ -42,6 +85,7 @@
 \KOMAoption{footheight}{22pt}
 \KOMAoption{DIV}{last}
 
+\ifcsname @load@wrapfig\endcsname\RequirePackage{wrapfig}\fi
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{lmodern}
@@ -61,93 +105,69 @@
 }
 
 % Provide some more metadata as required by the ministry of education:
-%   the class                      via \klasse
-%   the advisor                    via \betreuer
-%   a custom label for the advisor via \betreuerLabel
-%   the city or town of the school via \ort
-\newcommand{\klasse}[1]{\newcommand{\theklasse}{#1}}
-\newcommand{\betreuer}[1]{\newcommand{\thebetreuer}{#1}}
-\newcommand{\betreuerLabel}[1]{\newcommand{\thebetreuerlabel}{#1}}
+%   the class                        via \klasse
+%   the advisor (and a custom label) via \betreuungsperson
+%   the city or town of the school   via \ort
+\newcommand{\klasse}[1]{\newcommand*{\theklasse}{#1}}
+\newcommand{\betreuungsperson}[2][Betreuer*in]{\newcommand*{\thebetreuungslabel}{#1}\newcommand*{\thebetreuung}{#2}}
 \newcommand{\ort}[1]{\newcommand{\theort}{#1}}
-
-% Provide a sneaky way to disable colophon output (please don't use this!)
-\newcommand{\keinLaTeXHinweis}{\newcommand{\colophonAus}{}}
-
-% Provide a way to disable title output in the header and enable it in the footer
-%   \keinTitelImKopf     The header won't contain the title
-%   \titelImFuss         The footer will contain the author and the title
-%   \schuleImFuss        The footer will contain the author and the school
-%   \titelImKopfKlein    The header will scale the title down to \scriptsize
-% Note that the following options exclude each other:
-%   \titelImKopfKlein    will only work if \keinTitelImKopf is unset
-%   \schuleImFuss        will only work if \titelImFuss is unset
-\newcommand{\keinTitelImKopf}{\newcommand{\titelAus}{}}
-\newcommand{\titelImFuss}{\newcommand{\titelAn}{}}
-\newcommand{\schuleImFuss}{\newcommand{\schuleAn}{}}
-\newcommand{\titelImKopfKlein}{\newcommand{\titelAnKlein}{}}
 
 % Disclaimer command for the page after the title page.
 \newcommand*{\@colophon}{
 	\begingroup
-		\noindent{
-			\,
-			\vfill {}
-			{\noindent
-				Diese Arbeit wurde unter Zuhilfenahme des Bibliographieprogrammes
-				\texttt{biber} erstellt und mittels des Textsatzprogrammes
-				\LaTeX\ gesetzt.
-			}\\[\baselineskip]{\noindent
-				Die verwendete Vorlage, die auf
-				\href{https://www.komascript.de}{KOMA-Script} basiert, wurde von
-				Alexander Leithner erstellt und gemäß der \LaTeX\ Project Public
-				License, Version 1.3, als quelloffen auf
-				\href{https://github.com/a-leithner/latex-vwa-template}{GitHub}
-				zur Verfügung gestellt.
-			}
-		}
-		\par
+		\,
+		\vfill
+		
+		\noindent Diese Arbeit wurde mit dem Textsatzprogramm \LaTeX\ gesetzt und
+		mit den Bibliographieprogammen \texttt{biber} und Bib\LaTeX\ erstellt.
+		
+		\noindent Die verwendete Vorlage für vorwissenschaftliche Arbeiten wurde
+		von Alexander Leithner erstellt und auf \href{\fileurl}{GitHub} unter
+		der \LaTeX\ Project Public License in Version 1.3 quelloffen zur
+		Verfügung gestellt.
+		
+		{\noindent\footnotesize Diese Vorlage ist abrufbar unter \texttt{\fileurl}}
 	\endgroup
 }
 
 % Macro to ensure that we have any kind of town set, so we don't run into errors
 \newcommand{\@ensuretownset}{
 	\ifcsname theort\endcsname\else
-		\ClassWarning{vwa}{Kein Ort festgelegt! Setze "Wien".}
+		\ClassWarning{vwa}{Kein Ort festgelegt! Setze "Wien"}
 		\global\def\theort{Wien}
 	\fi
 }
 
 % Macro to ensure that we set all footnotes with a linespread of 1 if the
 % document's overall linespread is different than 1
-\newcommand{\@ensuresinglelinespreadinfootnotes}{
+\newcommand{\@ensuresinglelinespreadinfootnotes}{%
 	\addtokomafont{footnote}{\linespread{1}\selectfont}%
 }
 
 % Macro constructing the title page
 \newcommand*{\@thetitle}{
 	\ifcsname theschule\endcsname\else
-		\ClassError{vwa}{Keine Schule festgelegt!}{Setzen Sie Ihre Schule mithilfe des Macros "schule".}
+		\ClassError{vwa}{Keine Schule festgelegt}{Setzen Sie Ihre Schule mithilfe des Macros "\string\schule".}
 	\fi
 	\ifcsname theklasse\endcsname\else
-		\ClassError{vwa}{Keine Klasse festgelegt!}{Setzen Sie Ihre Klasse mithilfe des Macros "klasse".}
+		\ClassError{vwa}{Keine Klasse festgelegt}{Setzen Sie Ihre Klasse mithilfe des Macros "\string\klasse".}
 	\fi
-	\ifcsname thebetreuer\endcsname\else
-		\ClassError{vwa}{Kein Betreuer festgelegt!}{Setzen Sie Ihren Betreuer mithilfe des Macros "betreuer".}
+	\ifcsname thebetreuung\endcsname\else
+		\ClassError{vwa}{Kein*e Betreuer*in festgelegt}{Setzen Sie Ihre*n Betreuer*in mithilfe des Macros "\string\betreuungsperson".}
 	\fi
 	\@ensuretownset
 	\ifcsname thebetreuerlabel\endcsname\else\newcommand{\thebetreuerlabel}{Betreuer}\fi
     \begingroup 
         \begin{center}
-        \vspace*{\baselineskip}
-        {\Huge \@title}%
-        \\[\baselineskip]{\Large \@subtitle}\,\\[4\baselineskip]%
-        {\large Vorwissenschaftliche Arbeit verfasst von\\\textbf{\@author},\\Klasse \theklasse}
-        \vfill
-        \includegraphics[height=3cm,keepaspectratio]{\theschullogo}\\[\baselineskip]
-        {\large \thebetreuerlabel: \thebetreuer}\\[2\baselineskip]
-        {\large \theschule}\\
-        {\theschuladresse}\\[\baselineskip]
-        {\theort, \@date}
+			\vspace*{\baselineskip}
+			{\Huge \@title}\,\\[\baselineskip]%
+			{\Large \@subtitle}\par\,\\[2\baselineskip]%
+			{\large Vorwissenschaftliche Arbeit\\verfasst von\\\textbf{\@author},\\Klasse \theklasse}\\[2\baselineskip]%
+			\includegraphics[height=3cm,keepaspectratio]{\theschullogo}\\[\baselineskip]
+			{\large \thebetreuungslabel: \thebetreuung}\\[2\baselineskip]
+			{\large \theschule}\\
+			{\theschuladresse}\\[\baselineskip]
+			{\theort, \@date}
         \end{center}
     \endgroup
 }
@@ -160,14 +180,22 @@
 	\else
 		\newpage\thispagestyle{empty}\@colophon%
 	\fi
-    \end{titlepage}
+    \end{titlepage}%
+    \ifcsname @gendererklaerung@auto\endcsname\@frontmatter@truly\gendererklaerung\fi%
 }
 
 % Override the default KOMA-Script title layout
-\renewcommand*{\maketitle}{
-	\@definehdrs
-	\compiletitle
+\renewcommand*{\maketitle}{%
+	\@definehdrs%
+	\compiletitle%
 }
+
+% Override the default \frontmatter command to be able to provide the inclusivity statement automatically
+\let\@old@frontmatter\frontmatter
+\renewcommand*{\frontmatter}{%
+	\ifcsname @gendererklaerung@auto\endcsname\else\@old@frontmatter\fi%
+}
+\newcommand*{\@frontmatter@truly}{\@old@frontmatter}
 
 % Sets the headers and footers based upon the options given before invocation
 \newcommand{\@definehdrs}{
@@ -248,14 +276,21 @@
 % Shortcut command for figures with custom sizes
 \newcommand*{\Abbildung}{\@ifstar{\@Abbildung@custom}{\@Abbildung}}
 
-% Command enabling commands for placing figures so that text wraps around them
-\newcommand{\abbildungenMitUmfluss}{
-	\IfFileExists{wrapfig.sty}{%
-		\RequirePackage{wrapfig}%
-		\newcommand{\umfluss@ok}{}
-	}{%
-		\ClassError{vwa}{wrapfig nicht verfuegbar!}{Um Abbildungen mit Umfluss verwenden zu koennen, installieren Sie bitte das Paket wrapfig!}
-	}
+% Internal common warning command if wrapfig is missing
+\newcommand*{\@wrapfig@warning}{%
+	\ifcsname @load@wrapfig\endcsname
+	\ClassWarning{vwa}{Kann keine Umflussabbildungen setzen}{%
+		Sie haben zwar die Option "umflussabbildung" angegeben, da aber das
+		Paket "wrapfig" nicht installiert ist, werden alle Abbildungen
+		normal gesetzt!%
+	}\else%
+	\ClassError{vwa}{Umflussabbildungen sind deaktiviert}{%
+		Umflussabbildungen werden mit der Option "umflussabbildungen" aktiviert.
+		Dazu muss das Paket "wrapfig" installiert sein. Stellen Sie sicher,
+		dass die Option angegeben und das Paket installiert ist! Bis dahin sind
+		alle Abbildungen keine Umflussabbildungen.%
+	}%
+	\fi
 }
 
 % Command providing simple shortcut for wrapping figures
@@ -269,7 +304,7 @@
 		\label{abb:#2}%
 	\end{wrapfigure}%
 	\else%
-		\ClassError{vwa}{Umflussabbildung fehlerhaft, verwende normale Abbildung!}{Um Abbildungen mit Umfluss verwenden zu koennen, installieren Sie bitte das Paket wrapfig!}%
+		\@wrapfig@warning%
 		\@abbildung{#1}{#2}%
 	\fi%
 }
@@ -285,7 +320,7 @@
 		\label{abb:#3}%
 	\end{wrapfigure}%
 	\else%
-		\ClassError{vwa}{Umflussabbildung fehlerhaft, verwende normale Abbildung!}{Um Abbildungen mit Umfluss verwenden zu koennen, installieren Sie bitte das Paket wrapfig!}%
+		\@wrapfig@warning%
 		\@abbildung@custom{#1}{#2}{#3}{#4}%
 	\fi%
 }
@@ -305,7 +340,7 @@
 		\label{abb:#2}%
 	\end{wrapfigure}%
 	\else%
-		\ClassError{vwa}{Umflussabbildung fehlerhaft, verwende normale Abbildung!}{Um Abbildungen mit Umfluss verwenden zu koennen, installieren Sie bitte das Paket wrapfig!}%
+		\@wrapfig@warning%
 		\@Abbildung{#1}{#2}{#3}%
 	\fi%
 }
@@ -322,7 +357,7 @@
 		\label{abb:#3}%
 	\end{wrapfigure}%
 	\else%
-		\ClassError{vwa}{Umflussabbildung fehlerhaft, verwende normale Abbildung!}{Um Abbildungen mit Umfluss verwenden zu koennen, installieren Sie bitte das Paket wrapfig!}%
+		\@wrapfig@warning%
 		\@Abbildung@custom{#1}{#2}{#3}{#4}{#5}%
 	\fi%
 }
@@ -349,9 +384,13 @@
 	vorwissenschaftliche Arbeit selbstständig und ohne Hilfe Dritter verfasst
 	habe. Insbesondere versichere ich, dass ich alle wörtlichen und sinngemäßen
 	Übernahmen aus anderen Werken als Zitate kenntlich gemacht und alle
-	verwendeten Quellen angegeben habe.\\[2\baselineskip]
-	\par\noindent\makebox[5cm]{\,\hfill\theort, am\hspace{5mm}}\makebox[3cm][b]{\hrulefill}\hspace{1cm}\makebox[6cm]{\hrulefill}\\[-2mm]
-	\noindent\makebox[5cm]{~}\makebox[3cm][l]{Datum}\hspace{1cm}\makebox[6cm][l]{Unterschrift}
+	verwendeten Quellen angegeben habe.\\[2\baselineskip]\par
+	
+	\noindent%
+	\begin{tabular}{rll}
+	\theort, am & \makebox[3cm]{\hrulefill} & \,\makebox[6cm]{\hrulefill}\\
+	& Datum & Unterschrift
+	\end{tabular}
 }
 
 % Command for creating the optional-but-sometimes-required statement of inclusivity
