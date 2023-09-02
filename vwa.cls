@@ -41,8 +41,8 @@
 %   fussschule        The footer will contain the author and the school
 %   kopftitelklein    The header will scale the title down to \scriptsize
 % Note that the following options exclude each other:
-%   kopftitelklein    will only work if \keinTitelImKopf is unset
-%   fussschule        will only work if \titelImFuss is unset
+%   kopftitelklein    will only work if kopfleer is unset
+%   fussschule        will only work if fusstitel is unset
 \DeclareOption{kopfleer}{\newcommand{\titelAus}{}}
 \DeclareOption{fusstitel}{\newcommand{\titelAn}{}}
 \DeclareOption{fussschule}{\newcommand{\schuleAn}{}}
