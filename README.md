@@ -61,7 +61,9 @@ GitHub-Repositorys.
 
 Ich hoffe, dass diese Vorlage den an LaTeX interessierten Maturant\*innen
 eine Hilfe ist. Sollten bei der Verwendung dieser Vorlage und der
-Dokumentenklasse Fragen oder Probleme auftreten, können Sie oben über „Issues“ eine
+Dokumentenklasse Fragen oder Probleme auftreten, konsultieren Sie bitte zunächst
+die [FAQ-Seite im Wiki](https://github.com/a-leithner/latex-vwa-template/wiki/8:-Technische-FAQ).
+Sollten Ihre Sorgen dort nicht behoben worden sein, können Sie oben über „Issues“ eine
 Frage stellen oder ein Problem melden; ich bin sehr daran interessiert,
 beim Einstieg in LaTeX bestmöglich zu helfen.
 
