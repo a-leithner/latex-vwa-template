@@ -16,13 +16,13 @@ automatisierte, stilgerechte Zitieren und die automatische Verzeichniserstellung
 genannt.
 
 Da LaTeX allerdings eine relativ steile Lernkurve hat, soll diese Vorlage
-LaTeX-Einsteigern, die es einmal ausprobieren wollen, und die VWA als beste
+LaTeX-Einsteiger\*innen, die es einmal ausprobieren wollen und die VWA als beste
 Möglichkeit dafür sehen, einen einfachen Einstieg erleichtern.
 
 ## Warum?
 
-Mir ist bewusst, dass LaTeX nichts für durchschnittliche Anwender\*innen ist,
-ganz einfach, weil es eine relativ steile Lernkurve hat. Gleichzeitig bietet es
+Mir ist bewusst, dass LaTeX nichts ist, womit man im Vorbeigehen Officeprogramme
+ersetzt, ganz einfach, weil es eine relativ steile Lernkurve hat. Gleichzeitig bietet es
 aber gerade im Bereich des wissenschaftlichen Arbeitens (wozu es 1980 von Leslie
 Lamport und eigentlich TeX bereits 1977 von Donald E. Knuth konzipiert wurde)
 wahnsinnig viele Vorteile, die vielen menschlichen Fehlerquellen vorbeugen
