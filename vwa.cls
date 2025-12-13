@@ -6,7 +6,7 @@
 %
 
 %% vwa.cls
-%% Copyright 2020-2023 Alexander Leithner
+%% Copyright 2020-2025 Alexander Leithner
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -22,15 +22,19 @@
 %
 % This work consists of the file vwa.cls and is based on KOMA-Script
 
-\def\fileversion{1.0}
-\def\filedate{01.IX.2023}
+\def\fileversion{1.1}
+\def\filedate{13.XII.2025}
 \def\fileurl{https://github.com/a-leithner/latex-vwa-template}
 
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesClass{vwa}[2023/09/01 v.\fileversion\space by Alexander Leithner]
+\ProvidesClass{vwa}[2025/12/13 v.\fileversion\space by Alexander Leithner]
 
 \RequirePackage{xspace}
+
+% Provide an option to still print "VWA"/"vorwissenschaftliche Arbeit" instead
+% of "ABA"/"abschließende Arbeit" as VWAs were renamed
+\DeclareOption{vwastattaba}{\newcommand{\printVWA}{}}
 
 % Provide a sneaky way to disable colophon output (please don't use this!)
 \DeclareOption{keincolophon}{\newcommand{\colophonAus}{}}
@@ -92,7 +96,7 @@
 \RequirePackage{graphicx}
 \RequirePackage[autoenlargeheadfoot=on]{scrlayer-scrpage}
 \RequirePackage[backend=biber,style=authoryear-icomp,sortlocale=de_DE,hyperref=true,natbib=true,autocite=footnote]{biblatex}
-\RequirePackage[pdftex,hidelinks,unicode,pdfcreator={LaTeX 2e},pdfproducer={LaTeX mit VWA-Vorlage von A. Leithner}]{hyperref}
+\RequirePackage[pdftex,hidelinks,unicode,pdfcreator={LaTeX 2e},pdfproducer={LaTeX mit ABA/VWA-Vorlage von A. Leithner}]{hyperref}
 
 % Create a shortcut so we don't have to type \autocite the whole time
 \let\zit\autocite
@@ -121,7 +125,7 @@
 		\noindent Diese Arbeit wurde mit dem Textsatzprogramm \LaTeX\ gesetzt und
 		mit den Bibliographieprogammen \texttt{biber} und Bib\LaTeX\ erstellt.
 		
-		\noindent Die verwendete Vorlage für vorwissenschaftliche Arbeiten wurde
+		\noindent Die verwendete Vorlage für abschließende und vorwissenschaftliche Arbeiten wurde
 		von Alexander Leithner erstellt und auf \href{\fileurl}{GitHub} unter
 		der \LaTeX\ Project Public License in Version 1.3 quelloffen zur
 		Verfügung gestellt.
@@ -136,6 +140,19 @@
 		\ClassWarning{vwa}{Kein Ort festgelegt! Setze "Wien"}
 		\global\def\theort{Wien}
 	\fi
+}
+
+% Macro to ensure the correct label ("VWA" or "ABA") is set
+\newcommand{\@ensuretypelabelset}{%
+	\ifcsname typelabel\endcsname\else%
+		\ifcsname printvwa\endcsname%
+			\global\def\typelabel{vorwissenschaftliche}%
+			\global\def\Typelabel{Vorwissenschaftliche}%
+		\else%
+			\global\def\typelabel{abschließende}%
+			\global\def\Typelabel{Abschließende}%
+		\fi%
+	\fi%
 }
 
 % Macro to ensure that we set all footnotes with a linespread of 1 if the
@@ -156,13 +173,14 @@
 		\ClassError{vwa}{Kein*e Betreuer*in festgelegt}{Setzen Sie Ihre*n Betreuer*in mithilfe des Macros "\string\betreuungsperson".}
 	\fi
 	\@ensuretownset
+	\@ensuretypelabelset
 	\ifcsname thebetreuerlabel\endcsname\else\newcommand{\thebetreuerlabel}{Betreuer}\fi
     \begingroup 
         \begin{center}
 			\vspace*{\baselineskip}
 			{\Huge \@title}\,\\[\baselineskip]%
 			{\Large \@subtitle}\par\,\\[2\baselineskip]%
-			{\large Vorwissenschaftliche Arbeit\\verfasst von\\\textbf{\@author},\\Klasse \theklasse}\\[2\baselineskip]%
+			{\large \Typelabel{} Arbeit\\verfasst von\\\textbf{\@author},\\Klasse \theklasse}\\[2\baselineskip]%
 			\includegraphics[height=3cm,keepaspectratio]{\theschullogo}\\[\baselineskip]
 			{\large \thebetreuungslabel: \thebetreuung}\\[2\baselineskip]
 			{\large \theschule}\\
@@ -280,7 +298,7 @@
 \newcommand*{\@wrapfig@warning}{%
 	\ifcsname @load@wrapfig\endcsname
 	\ClassWarning{vwa}{Kann keine Umflussabbildungen setzen}{%
-		Sie haben zwar die Option "umflussabbildung" angegeben, da aber das
+		Sie haben zwar die Option "umflussabbildungen" angegeben, da aber das
 		Paket "wrapfig" nicht installiert ist, werden alle Abbildungen
 		normal gesetzt!%
 	}\else%
@@ -378,10 +396,11 @@
 % Command for creating the optional statement of authorship
 \newcommand*{\selbststaendigkeitserklaerung}{
 	\@ensuretownset
+	\@ensuretypelabelset
 	\thispagestyle{empty}
 	\chapter*{Selbstständigkeitserklärung}
 	Ich, \@author, erkläre hiermit, dass ich diese
-	vorwissenschaftliche Arbeit selbstständig und ohne Hilfe Dritter verfasst
+	\typelabel{} Arbeit selbstständig und ohne Hilfe Dritter verfasst
 	habe. Insbesondere versichere ich, dass ich alle wörtlichen und sinngemäßen
 	Übernahmen aus anderen Werken als Zitate kenntlich gemacht und alle
 	verwendeten Quellen angegeben habe.\\[2\baselineskip]\par
@@ -395,9 +414,10 @@
 
 % Command for creating the optional-but-sometimes-required statement of inclusivity
 \newcommand*{\gendererklaerung}{
+	\@ensuretypelabelset
 	\thispagestyle{empty}
 	\chapter*{Gendererklärung}
-	Aus Gründen der besseren Lesbarkeit wird in dieser vorwissenschaftlichen
+	Aus Gründen der besseren Lesbarkeit wird in dieser \typelabel
 	Arbeit die Sprachform des generischen Maskulinums angewandt. Es wird an
 	dieser Stelle ausdrücklich darauf hingewiesen, dass die ausschließliche
 	Verwendung der männlichen Form geschlechtsunabhängig verstanden werden soll.
