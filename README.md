@@ -1,4 +1,4 @@
-# LaTeX-Vorlage für VWAs
+# LaTeX-Vorlage für ABAs und VWAs
 
 > [!NOTE]  
 > Since this repository is specifically targeted at Austrian students,
@@ -7,7 +7,7 @@
 
 ## Was ist das?
 
-Dieses Repository beinhaltet ein Vorlage-Projekt für eine VWA, die mit Hilfe
+Dieses Repository beinhaltet ein Vorlage-Projekt für eine ABA (früher VWA), die mit Hilfe
 des Textsatzprogrammes [LaTeX](https://de.wikipedia.org/wiki/LaTeX) verfasst
 werden soll. LaTeX bietet viele Vorteile, unter anderem die Automatisierung
 vieler Arbeitsschritte, die in Microsoft Word oder OpenOffice, LibreOffice et al.
@@ -16,7 +16,7 @@ automatisierte, stilgerechte Zitieren und die automatische Verzeichniserstellung
 genannt.
 
 Da LaTeX allerdings eine relativ steile Lernkurve hat, soll diese Vorlage
-LaTeX-Einsteiger\*innen, die es einmal ausprobieren wollen und die VWA als beste
+LaTeX-Einsteiger\*innen, die es einmal ausprobieren wollen und die ABA als beste
 Möglichkeit dafür sehen, einen einfachen Einstieg erleichtern.
 
 ## Warum?
@@ -90,4 +90,4 @@ Die mitgelieferten Vorlagedateien, `kapitel/_abstract.tex`, `kapitel/_vorwort.te
 und müssen daher in der Arbeit nicht erwähnt werden.
 
 Dieses gesamte Repository unterliegt allerdings folgendem Copyright:  
-Copyright &copy; 2020&ndash;2023 Alexander Leithner.
+Copyright &copy; 2020&ndash;2025 Alexander Leithner.
